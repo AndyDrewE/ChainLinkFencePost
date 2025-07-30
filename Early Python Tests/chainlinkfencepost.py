@@ -1,6 +1,6 @@
 import random as rnd
 
-word_pairs = ["water slide", "slide show", "show girl", "girl scout", "scout leader", "slide deck", "show stopper", "water softener", "leader board", "apple pie", "pie crust"]
+word_pairs = ["water slide", "slide show", "show girl", "girl scout", "scout leader", "slide deck", "show stopper", "water softener", "leader board", "apple pie", "pie crust", "slide rule", "row boat"]
 
 def find_nth_words(pairs, n):
     nth_words = []
@@ -9,8 +9,6 @@ def find_nth_words(pairs, n):
         if nth_word not in nth_words:
             nth_words.append(nth_word)
     return nth_words
-
-
 
 def find_available_letters(words):
     letters_available = []
@@ -29,15 +27,23 @@ def pick_random_letter(letters):
     rand_index = rnd.randint(0, num_letters - 1)
     return letters[rand_index]
 
-def is_valid(current_word, last_word = ""):
+def get_usable_pairs(word):
+    return [pair for pair in word_pairs if pair.split(" ")[0] == word]
+
+
+
+def is_valid(current_word, previous_word = ""):
+    #print(f"Previous: {previous_word}")
+    #print(f"Current: {current_word}")
+
     #First time this is checked, the word needs to be check against first_words
-    if last_word == "":
+    if previous_word == "":
         if current_word in find_nth_words(word_pairs, 1):
             return True
         else:
             return False
     
-    test_string = last_word + " " + current_word
+    test_string = previous_word + " " + current_word
     if test_string in word_pairs:
         return True
     else:
@@ -48,14 +54,23 @@ def main():
     current_letters = find_available_letters(first_words)
     rand_letter = pick_random_letter(current_letters)
 
-    current_word = input(rand_letter)
+    current_word = rand_letter + input(rand_letter)
     previous_word = ""
 
     while is_valid(current_word, previous_word):
-        useable_pairs = [pair for pair in word_pairs if pair.split(" ")[0] == current_word]
-        print(useable_pairs)
-        previous_word = current_word
-        current_word = input(rand_letter)
+        useable_pairs = get_usable_pairs(current_word)
+        if useable_pairs:
+            second_words = find_nth_words(useable_pairs, 2)
+            current_letters = find_available_letters(second_words)
+            rand_letter = pick_random_letter(current_letters)
+            previous_word = current_word
+            current_word = rand_letter + input(rand_letter)
+        else: 
+            print("No valid next word")
+            break
+    print("End of Game")
+
+        
 
 
 main()
