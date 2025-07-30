@@ -1,0 +1,2 @@
+# ChainLinkFencePost
+a word chain game where players start with a random letter and build a chain of real two-word phrases, like “water slide” or “slide show,” with each new word beginning with the next random letter. The goal is to create the longest valid chain possible without repeating words or breaking the phrase logic. Players earn points based on the length and complexity of each word, with longer or more specific phrases like “water softener” scoring higher — but at the risk of ending the chain, since some words can’t be followed.
