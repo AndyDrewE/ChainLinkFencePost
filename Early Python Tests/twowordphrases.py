@@ -25,9 +25,11 @@ for name in names:
         if len(parts) == 2:
             #Must be alphabetic words at least 2 long
             if all(p.isalpha() and len(p) > 1 for p in parts):
-                # watch yo profanity, kind of heavy handed profanity chekcer but it works
-                if not profanity.contains_profanity(f"{parts[0]} {parts[1]}"):
-                    phrases.add(f"{parts[0].lower()} {parts[1].lower()}")
+                #Filter obvious proper nouns
+                if not any(p[0].isupper() for p in parts):
+                    # watch yo profanity, kind of heavy handed profanity chekcer but it works
+                    if not profanity.contains_profanity(f"{parts[0]} {parts[1]}"):
+                        phrases.add(f"{parts[0].lower()} {parts[1].lower()}")
 t1 = time.perf_counter()
 print(f"Filtered Phrases in {t1 - t0:.2f} seconds")
     
