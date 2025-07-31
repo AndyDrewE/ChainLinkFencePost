@@ -1,6 +1,6 @@
 import random as rnd
 
-word_pairs = ["water slide", "slide show", "show girl", "girl scout", "scout leader", "slide deck", "show stopper", "water softener", "leader board", "apple pie", "pie crust", "slide rule", "row boat"]
+word_pairs = ["water slide", "slide show", "show girl", "girl scout", "scout leader", "slide deck", "show stopper", "water softener", "leader board", "apple pie", "pie crust", "slide rule", "row boat", "board game", "game changer", "board up", "up side", "down side", "off side", "shut up"]
 
 def find_nth_words(pairs, n):
     nth_words = []
@@ -51,6 +51,9 @@ def is_valid(current_word, previous_word = ""):
 
 def main():
     first_words = find_nth_words(word_pairs, 1)
+    second_words = find_nth_words(word_pairs, 2)
+    distinct_words = set(first_words + second_words)
+
     current_letters = find_available_letters(first_words)
     rand_letter = pick_random_letter(current_letters)
 
@@ -60,8 +63,8 @@ def main():
     while is_valid(current_word, previous_word):
         useable_pairs = get_usable_pairs(current_word)
         if useable_pairs:
-            second_words = find_nth_words(useable_pairs, 2)
-            current_letters = find_available_letters(second_words)
+            second_words_usable = find_nth_words(useable_pairs, 2)
+            current_letters = find_available_letters(second_words_usable)
             rand_letter = pick_random_letter(current_letters)
             previous_word = current_word
             current_word = rand_letter + input(rand_letter)
