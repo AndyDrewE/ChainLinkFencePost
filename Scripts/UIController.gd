@@ -1,5 +1,7 @@
 extends Control
 
+###TODO: Main Menu, Pause Menu, Buttons
+
 #Player Input Variables
 @onready var player_input_textbox = $PlayerInput
 @onready var previous_words = $PreviousWordsBox

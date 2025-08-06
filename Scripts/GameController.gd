@@ -1,7 +1,8 @@
 ## Game Controller.gd
 extends Node
 
-var word_pairs = ["chain link", "chain mail", "fence post", "link fence", "mail room", "bed room", "guest bed", "bath room", "bath mat", "post office", "office space", "office building", "building manager", "general manager", "bottled water", "water slide", "slide show", "show girl", "girl scout", "scout leader", "leader board", "board game", "game over", "game on", "over easy", "easy bake", "easy living", "bake off", "bake well", "well done", "done for", "off side", "in side", "water softener"]
+### TODO: Add more words, make a file for all of the word pairs
+var word_pairs = ["chain link", "chain mail", "fence post", "link fence", "mail room", "bed room", "guest bed", "bath room", "bath mat", "post office", "office space", "office building", "building manager", "general manager", "water slide", "water bottle", "bottle cap", "cap stone", "slide show", "show girl", "girl scout", "scout leader", "leader board", "board game", "game over", "game on", "over easy", "easy bake", "easy living", "bake off", "bake well", "well done", "done for", "off side", "in side", "water softener"]
 var word_pairs_dict = {}
 
 var player_lives = 3
