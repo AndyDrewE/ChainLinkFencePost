@@ -2,13 +2,15 @@
 extends Node
 
 ### TODO: Add more words, make a file for all of the word pairs
-var word_pairs = ["chain link", "chain mail", "fence post", "link fence", "mail room", "bed room", "guest bed", "bath room", "bath mat", "post office", "office space", "office building", "building manager", "general manager", "water slide", "water bottle", "bottle cap", "cap stone", "slide show", "show girl", "girl scout", "scout leader", "leader board", "board game", "game over", "game on", "over easy", "easy bake", "easy living", "bake off", "bake well", "well done", "done for", "off side", "in side", "water softener"]
+var word_pairs = ["game room", "game master", "master chief", "board room", "master bath","room mate","chain link", "chain mail", "fence post", "link fence", "mail room", "bed room", "guest bed", "bath room", "bath mat", "post office", "office space", "office building", "building manager", "general manager", "water slide", "water bottle", "bottle cap", "cap stone", "slide show", "show girl", "girl scout", "scout leader", "leader board", "board game", "game over", "game on", "over easy", "easy bake", "easy living", "bake off", "bake well", "well done", "done for", "off side", "in side", "water softener"]
 var word_pairs_dict = {}
 
 var player_lives = 3
 var player_score = 0
 
 var previous_word = ""
+
+var paused = false
 
 func _ready():
 	# Key the word dictionary
@@ -17,6 +19,10 @@ func _ready():
 
 func get_UI_controller() -> Node:
 	return get_tree().current_scene.get_node("UIController")
+
+func go_to_start():
+	paused = false
+	get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
 
 func key_word_dict():
 	for pair in word_pairs:

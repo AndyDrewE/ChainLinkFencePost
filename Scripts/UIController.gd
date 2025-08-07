@@ -2,6 +2,9 @@ extends Control
 
 ###TODO: Main Menu, Pause Menu, Buttons
 
+##Pause Menu
+@onready var pause_menu = get_node("Pause_Menu")
+
 #Player Input Variables
 @onready var player_input_textbox = $PlayerInput
 @onready var previous_words = $PreviousWordsBox
@@ -49,6 +52,10 @@ func game_over():
 	game_over_label.visible = true
 	player_input_textbox.editable = false
 
+func toggle_pause_menu():
+	GameController.paused = !GameController.paused
+	pause_menu.visible = GameController.paused
+
 func _on_player_input_text_submitted(new_text):
 	if player_input_textbox.editable:
 		new_text = new_text.to_lower()
@@ -64,3 +71,7 @@ func _on_player_input_text_submitted(new_text):
 			flash_label_invalid()
 			#Take away a life
 			GameController.update_lives(-1)
+
+
+func _on_pause_menu_button_pressed():
+	toggle_pause_menu()

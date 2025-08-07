@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bdlkayfwg2gwg"]
+[gd_scene load_steps=4 format=3 uid="uid://bdlkayfwg2gwg"]
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_2wc27"]
 [ext_resource type="Script" path="res://Scripts/UIController.gd" id="1_gth01"]
+[ext_resource type="PackedScene" uid="uid://co212rrxbqw8m" path="res://Scenes/pause_menu.tscn" id="3_v748b"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_2wc27")
@@ -102,4 +103,15 @@ theme_override_constants/outline_size = 16
 theme_override_font_sizes/font_size = 108
 text = "GAME OVER"
 
+[node name="PauseMenuButton" type="Button" parent="UIController"]
+layout_mode = 1
+offset_right = 8.0
+offset_bottom = 8.0
+theme_override_font_sizes/font_size = 48
+text = "Pause Menu"
+
+[node name="Pause_Menu" parent="UIController" instance=ExtResource("3_v748b")]
+visible = false
+
 [connection signal="text_submitted" from="UIController/PlayerInput" to="UIController" method="_on_player_input_text_submitted"]
+[connection signal="pressed" from="UIController/PauseMenuButton" to="UIController" method="_on_pause_menu_button_pressed"]
