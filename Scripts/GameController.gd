@@ -2,13 +2,40 @@
 extends Node
 
 ### TODO: Add more words, make a file for all of the word pairs
-var word_pairs = ["game room", "game master", "master chief", "board room", "master bath","room mate","chain link", "chain mail", "fence post", "link fence", "mail room", "bed room", "guest bed", "bath room", "bath mat", "post office", "office space", "office building", "building manager", "general manager", "water slide", "water bottle", "bottle cap", "cap stone", "slide show", "show girl", "girl scout", "scout leader", "leader board", "board game", "game over", "game on", "over easy", "easy bake", "easy living", "bake off", "bake well", "well done", "done for", "off side", "in side", "water softener"]
+var word_pairs = ['bake off', 'bake sale', 'bake well', 'bath mat', 'bath mat', 'bath robe', 
+		   'bath room', 'bath salts', 'bath sponge', 'bath towel', 'bed room', 'black belt', 
+		   'black board', 'black smith', 'black stone', 'board cover', 'board game', 'board meeting', 
+		   'board room', 'board walk', 'book shelf', 'bottle cap', 'bottle neck', 'bottle opener', 
+		   'boy scout', 'building manager', 'camp fire', 'camp ground', 'camp site', 'cap gun', 
+		   'cap stone', 'chain link', 'chain mail', 'chain reaction', 'chain saw', 'code switch', 
+		   'done for', 'easy bake', 'easy living', 'fence gate', 'fence line', 'fence post', 
+		   'game board', 'game card', 'game master', 'game night', 'game on', 'game over', 
+		   'game room', 'game token', 'garden gate', 'garden path', 'garden room', 'garden wall', 
+		   'general manager', 'general store', 'girl scout', 'green house', 'guest bed', 'guest room', 
+		   'hot topic', 'in side', 'kitchen sink', 'last word', 'leader board', 'light beam', 
+		   'light house', 'light switch', 'link fence', 'lock box', 'lock pick', 'lock smith', 
+		   'lock step', 'mail box', 'mail carrier', 'mail room', 'mail route', 'mail slot', 
+		   'master bath', 'master chief', 'mix bowl', 'mix tape', 'mountain pass', 'mountain trail', 
+		   'ocean breeze', 'off side', 'office building', 'office chair', 'office door', 'office light', 
+		   'office space', 'over easy', 'post card', 'post code', 'post mark', 'post office', 
+		   'room mate', 'scout badge', 'scout camp', 'scout leader', 'scout troop', 'show girl', 
+		   'sink hole', 'slide show', 'sponge bath', 'stone bridge', 'stone floor', 'stone path', 
+		   'stone step', 'stone wall', 'store room', 'switch blade', 'switch board', 'switch gear', 
+		   'tape recorder', 'trail guide', 'trail head', 'trail map', 'trail mix', 'trail sign', 
+		   'water bottle', 'water front', 'water line', 'water mark', 'water pipe', 'water slide', 
+		   'water softener', 'water well', 'well done', 'word game', 'word smith', 'apple pie',
+		   'pie crust', 'granny smith', 'apple tart', 'wood panel', 'panel show', "stone quarry", 
+		   "trail runner", "office plant", "board member", "mail truck", "post route", 
+		   "garden shed", "room key", "switch lock", "water shed", "game show", "stone arch", "board fence", 
+		   "trail junction", "water tank", "light post", "stop light", "cross road", "road runner", "runner up",
+		   "up side", "upside down", "down side", "out side", "side on"]
+
 var word_pairs_dict = {}
 
 var player_lives = 3
 var player_score = 0
 
-var previous_word = ""
+var previous_words = []
 
 var paused = false
 
@@ -58,5 +85,5 @@ func update_score(cost):
 	get_UI_controller().update_score_label()
 
 func pick_first_word():
-	previous_word = word_pairs_dict.keys().pick_random()
-	get_UI_controller().create_label(previous_word)
+	previous_words.append(word_pairs_dict.keys().pick_random())
+	get_UI_controller().create_label(previous_words[-1])

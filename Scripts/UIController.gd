@@ -20,8 +20,11 @@ extends Control
 func _ready():
 	update_stats_box()
 	
+	
 	#Pick first word and add it to the previous words box
+	GameController.previous_words = []
 	GameController.pick_first_word()
+	print(GameController.previous_words)
 
 ## Update all in the stats box
 func update_stats_box():
@@ -59,9 +62,9 @@ func toggle_pause_menu():
 func _on_player_input_text_submitted(new_text):
 	if player_input_textbox.editable:
 		new_text = new_text.to_lower()
-		if GameController.is_valid(new_text, GameController.previous_word):
+		if GameController.is_valid(new_text, GameController.previous_words[-1]):
 			create_label(new_text)
-			GameController.previous_word = new_text
+			GameController.previous_words.append(new_text)
 			#Erase Text
 			player_input_textbox.text = ""
 			
