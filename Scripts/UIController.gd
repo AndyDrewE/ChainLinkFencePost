@@ -1,6 +1,6 @@
 extends Control
 
-###TODO: Main Menu, Pause Menu, Buttons
+
 
 ##Pause Menu
 @onready var pause_menu = get_node("Pause_Menu")
