@@ -28,7 +28,15 @@ var word_pairs = ['bake off', 'bake sale', 'bake well', 'bath mat', 'bath mat', 
 		   "trail runner", "office plant", "board member", "mail truck", "post route", 
 		   "garden shed", "room key", "switch lock", "water shed", "game show", "stone arch", "board fence", 
 		   "trail junction", "water tank", "light post", "stop light", "cross road", "road runner", "runner up",
-		   "up side", "upside down", "down side", "out side", "side on"]
+		   "up side", "upside down", "down side", "out side", "side on", "tape worm", "tape dispenser", 
+		   "worm hole", "hole punch", "hole cutter", "hole saw", "hole cover", "hole filler", "hole trap", 
+		   "hole plug", "hole opener", "hole drill", "hole finder", "show stopper", "show stop", "stop light", 
+		   "stop sign", "down vote", "down payment", "down time", "down stairs", "down town", "down hill", 
+		   "down load", "down pour", "down draft", "down swing", "up time", "up town", "up hill", "up stairs",
+		"side door", "side walk", "side table", "side mirror", "side window", "side panel", "side track", 
+		"side street", "side wall", "side view", "smith shop", "shop keep", "apple orchard", "pizza crust",
+		"bath bomb", "word play", "code word",  "trail blaze", "camp stove", "game piece", 
+		"lock jaw", "board state", "mail bag"]
 
 var word_pairs_dict = {}
 

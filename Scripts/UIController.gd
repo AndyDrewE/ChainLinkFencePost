@@ -62,7 +62,7 @@ func toggle_pause_menu():
 func _on_player_input_text_submitted(new_text):
 	if player_input_textbox.editable:
 		new_text = new_text.to_lower()
-		if GameController.is_valid(new_text, GameController.previous_words[-1]):
+		if GameController.is_valid(new_text, GameController.previous_words[-1]) and new_text not in GameController.previous_words:
 			create_label(new_text)
 			GameController.previous_words.append(new_text)
 			#Erase Text
