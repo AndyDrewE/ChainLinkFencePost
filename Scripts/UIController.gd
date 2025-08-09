@@ -24,7 +24,6 @@ func _ready():
 	#Pick first word and add it to the previous words box
 	GameController.previous_words = []
 	GameController.pick_first_word()
-	print(GameController.previous_words)
 
 ## Update all in the stats box
 func update_stats_box():
