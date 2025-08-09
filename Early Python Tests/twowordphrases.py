@@ -7,7 +7,6 @@ import time
 
 phrases = set()
 
-
 t0_total = time.perf_counter()
 
 #Get distinct names in all of the synsets to process
