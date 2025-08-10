@@ -1,37 +1,57 @@
-phrases = ['bake off', 'bake sale', 'bake well', 'bath mat', 'bath mat', 'bath robe', 
-		   'bath room', 'bath salts', 'bath sponge', 'bath towel', 'bed room', 'black belt', 
-		   'black board', 'black smith', 'black stone', 'board cover', 'board game', 'board meeting', 
-		   'board room', 'board walk', 'book shelf', 'bottle cap', 'bottle neck', 'bottle opener', 
-		   'boy scout', 'building manager', 'camp fire', 'camp ground', 'camp site', 'cap gun', 
-		   'cap stone', 'chain link', 'chain mail', 'chain reaction', 'chain saw', 'code switch', 
-		   'done for', 'easy bake', 'easy living', 'fence gate', 'fence line', 'fence post', 
-		   'game board', 'game card', 'game master', 'game night', 'game on', 'game over', 
-		   'game room', 'game token', 'garden gate', 'garden path', 'garden room', 'garden wall', 
-		   'general manager', 'general store', 'girl scout', 'green house', 'guest bed', 'guest room', 
-		   'hot topic', 'in side', 'kitchen sink', 'last word', 'leader board', 'light beam', 
-		   'light house', 'light switch', 'link fence', 'lock box', 'lock pick', 'lock smith', 
-		   'lock step', 'mail box', 'mail carrier', 'mail room', 'mail route', 'mail slot', 
-		   'master bath', 'master chief', 'mix bowl', 'mix tape', 'mountain pass', 'mountain trail', 
-		   'ocean breeze', 'off side', 'office building', 'office chair', 'office door', 'office light', 
-		   'office space', 'over easy', 'post card', 'post code', 'post mark', 'post office', 
-		   'room mate', 'scout badge', 'scout camp', 'scout leader', 'scout troop', 'show girl', 
-		   'sink hole', 'slide show', 'sponge bath', 'stone bridge', 'stone floor', 'stone path', 
-		   'stone step', 'stone wall', 'store room', 'switch blade', 'switch board', 'switch gear', 
-		   'tape recorder', 'trail guide', 'trail head', 'trail map', 'trail mix', 'trail sign', 
-		   'water bottle', 'water front', 'water line', 'water mark', 'water pipe', 'water slide', 
-		   'water softener', 'water well', 'well done', 'word game', 'word smith', 'apple pie',
-		   'pie crust', 'granny smith', 'apple tart', 'wood panel', 'panel show', "stone quarry", 
-		   "trail runner", "office plant", "board member", "mail truck", "post route", 
-		   "garden shed", "room key", "switch lock", "water shed", "game show", "stone arch", "board fence", 
-		   "trail junction", "water tank", "light post", "stop light", "cross road", "road runner", "runner up",
-		   "up side", "upside down", "down side", "out side", "side on", "tape worm", "tape dispenser", 
-		   "worm hole", "hole punch", "hole cutter", "hole saw", "hole cover", "hole filler", "hole trap", 
-		   "hole plug", "hole opener", "hole drill", "hole finder", "show stopper", "show stop", "stop light", 
-		   "stop sign", "down vote", "down payment", "down time", "down stairs", "down town", "down hill", 
-		   "down load", "down pour", "down draft", "down swing", "up time", "up town", "up hill", "up stairs",
-		    "side door", "side walk", "side table", "side mirror", "side window", "side panel", "side track", 
-		    "side street", "side wall", "side view", "smith shop", "shop keep", "apple orchard", "pizza crust",
-		    "bath bomb", "word play", "code word",  "trail blaze", "camp stove", "game piece", 
-		    "lock jaw", "board state", "mail bag"]
 
 
+def load_pairs(file_path):
+	with open(file_path, "r", encoding="utf-8") as f:
+		return f.read().splitlines()
+
+def save_pairs(file_path, pairs):
+	with open(file_path, "w", encoding="utf-8") as f:
+		f.write("\n".join(pairs) + "\n")
+
+def prompt_action():
+	return input("Choose action - [r]emove, [a]dd new pair, [c]ontinue, [q]uit: ").strip().lower()
+
+def main():
+	file_path = "two_word_phrases.txt"
+	lines = load_pairs(file_path)
+	kept_pairs = []
+	added_pairs = []
+	index = 0
+	while index < len(lines):
+		line = lines[index]
+		print(f"Current pair: {line}")
+		action = prompt_action()
+		if action == 'r':
+			print("Pair removed.")
+			index += 1
+		elif action == 'a':
+			new_pair = input("Enter new pair to add: ").strip()
+			# Check for duplicates in all current and added pairs
+			all_pairs = set(kept_pairs + added_pairs + lines[index:])
+			if new_pair:
+				if new_pair in all_pairs:
+					print(f"Duplicate detected: '{new_pair}' is already in the list. Not added.")
+					# Stay on the same line to allow further action
+				else:
+					added_pairs.append(new_pair)
+					print(f"Added: {new_pair}")
+			# Stay on the same line to allow further action
+		elif action == 'c':
+			kept_pairs.append(line)
+			index += 1
+		elif action == 'q':
+			print("Quitting early.")
+			# Add all remaining lines to kept_pairs
+			kept_pairs.extend(lines[index:])
+			break
+		else:
+			print("Invalid input. Please enter 'r', 'a', 'c', or 'q'.")
+	final_pairs = kept_pairs + added_pairs
+	# Sort the final pairs alphabetically
+	final_pairs = sorted(final_pairs)
+	# Save the final pairs to the file
+	save_pairs(file_path, final_pairs)
+	print(f"Done. Output written to {file_path}")
+
+if __name__ == "__main__":
+	main()
