@@ -14,7 +14,7 @@ var previous_words = []
 var paused = false
 
 func _ready():
-	var file_path = "res://word_pairs_100k.txt" # Adjust path as needed
+	var file_path = "res://two_word_phrases.txt" # Adjust path as needed
 	word_pairs = load_word_pairs(file_path)
 	
 	# Key the word dictionary
